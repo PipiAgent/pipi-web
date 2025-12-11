@@ -1,0 +1,325 @@
+/* PIPI Custom Animations and Styles */
+
+/* Glitch text effect */
+@keyframes glitch {
+  0% {
+    clip-path: inset(40% 0 61% 0);
+    transform: translate(-2px, 2px);
+  }
+  20% {
+    clip-path: inset(92% 0 1% 0);
+    transform: translate(2px, -2px);
+  }
+  40% {
+    clip-path: inset(43% 0 1% 0);
+    transform: translate(-2px, 2px);
+  }
+  60% {
+    clip-path: inset(25% 0 58% 0);
+    transform: translate(2px, -2px);
+  }
+  80% {
+    clip-path: inset(54% 0 7% 0);
+    transform: translate(-2px, 2px);
+  }
+  100% {
+    clip-path: inset(58% 0 43% 0);
+    transform: translate(2px, -2px);
+  }
+}
+
+@keyframes glitch-2 {
+  0% {
+    clip-path: inset(25% 0 58% 0);
+    transform: translate(2px, -2px);
+  }
+  20% {
+    clip-path: inset(54% 0 7% 0);
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    clip-path: inset(58% 0 43% 0);
+    transform: translate(2px, -2px);
+  }
+  60% {
+    clip-path: inset(40% 0 61% 0);
+    transform: translate(-2px, 2px);
+  }
+  80% {
+    clip-path: inset(92% 0 1% 0);
+    transform: translate(2px, -2px);
+  }
+  100% {
+    clip-path: inset(43% 0 1% 0);
+    transform: translate(-2px, 2px);
+  }
+}
+
+/* Tear falling animation */
+@keyframes tear-fall {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(50px) scale(0.9);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(100px) scale(0.7);
+    opacity: 0;
+  }
+}
+
+/* Koink pulse animation */
+@keyframes koink-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: var(--box-shadow-x) var(--box-shadow-y) 0px 0px var(--border);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: calc(var(--box-shadow-x) * 1.5) calc(var(--box-shadow-y) * 1.5) 0px 0px var(--border);
+  }
+}
+
+/* Mud scroll parallax */
+@keyframes mud-scroll {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -100px 0;
+  }
+}
+
+/* Pig walking animation */
+@keyframes pig-walk {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-3px) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(0) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-3px) rotate(2deg);
+  }
+}
+
+/* Float animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Shake animation for game over */
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+/* Diamond sparkle */
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1) rotate(5deg);
+  }
+}
+
+/* CRT scanline effect */
+@keyframes scanline {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(4px);
+  }
+}
+
+/* Typing cursor blink */
+@keyframes blink-cursor {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+/* Counter increment */
+@keyframes counter-up {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Utility classes */
+.animate-glitch {
+  animation: glitch 0.3s infinite linear alternate-reverse;
+}
+
+.animate-glitch-2 {
+  animation: glitch-2 0.3s infinite linear alternate-reverse;
+}
+
+.animate-tear-fall {
+  animation: tear-fall 2s infinite ease-in;
+}
+
+.animate-koink-pulse {
+  animation: koink-pulse 2s infinite ease-in-out;
+}
+
+.animate-mud-scroll {
+  animation: mud-scroll 3s infinite linear;
+}
+
+.animate-pig-walk {
+  animation: pig-walk 0.4s infinite ease-in-out;
+}
+
+.animate-float {
+  animation: float 3s infinite ease-in-out;
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+.animate-sparkle {
+  animation: sparkle 1s infinite ease-in-out;
+}
+
+.animate-blink-cursor {
+  animation: blink-cursor 1s infinite;
+}
+
+/* Glitch text wrapper */
+.glitch-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-wrapper::before,
+.glitch-wrapper::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-wrapper::before {
+  color: #ff00ff;
+  animation: glitch 0.3s infinite linear alternate-reverse;
+  z-index: -1;
+}
+
+.glitch-wrapper::after {
+  color: #00ffff;
+  animation: glitch-2 0.3s infinite linear alternate-reverse;
+  z-index: -1;
+}
+
+/* CRT scanline overlay */
+.crt-overlay {
+  position: relative;
+}
+
+.crt-overlay::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.1) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Mud gradient background */
+.mud-gradient {
+  background: linear-gradient(
+    180deg,
+    oklch(71.5% 0.197 354.23 / 0.1) 0%,
+    oklch(40% 0.1 30) 50%,
+    oklch(30% 0.08 25) 100%
+  );
+}
+
+/* Marble gradient */
+.marble-gradient {
+  background: linear-gradient(
+    180deg,
+    oklch(95% 0.02 343) 0%,
+    oklch(98% 0.01 343) 50%,
+    oklch(100% 0 0) 100%
+  );
+}
+
+/* Pink glow effect */
+.pink-glow {
+  box-shadow:
+    0 0 10px oklch(71.5% 0.197 354.23 / 0.5),
+    0 0 20px oklch(71.5% 0.197 354.23 / 0.3),
+    0 0 30px oklch(71.5% 0.197 354.23 / 0.1);
+}
+
+/* Golden glow for evolution */
+.golden-glow {
+  box-shadow:
+    0 0 10px oklch(86.03% 0.176 92.36 / 0.5),
+    0 0 20px oklch(86.03% 0.176 92.36 / 0.3),
+    0 0 30px oklch(86.03% 0.176 92.36 / 0.1);
+}
+
+/* Terminal text style */
+.terminal-text {
+  font-family: monospace;
+  color: #00ff00;
+  text-shadow: 0 0 5px #00ff00;
+}
+
+/* Retro button style */
+.retro-button {
+  image-rendering: pixelated;
+  font-family: 'Press Start 2P', monospace;
+}
+
+/* Game canvas container */
+.game-container {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
