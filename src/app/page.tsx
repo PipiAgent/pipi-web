@@ -197,7 +197,7 @@ export default function Home() {
         className="fixed bottom-[11vh] left-1/2 -translate-x-1/2 w-[70vw] md:w-[40vw] max-w-[400px] h-auto z-50"
       />
 
-      {/* Left side - Doge speak on curved path */}
+      {/* Left side - Rotating text around Pi symbol */}
       <div
         className="fixed left-4 md:left-8 bottom-[18vh] z-[100] pointer-events-none select-none"
         style={{
@@ -205,25 +205,32 @@ export default function Home() {
           transition: "opacity 0.3s ease-out",
         }}
       >
-        <svg width="180" height="140" viewBox="0 0 180 140" className="overflow-visible">
-          <defs>
-            <path
-              id="wavyPath"
-              d="M 10 120 Q 50 60, 90 80 T 170 30"
-              fill="none"
-            />
-          </defs>
-          <text
-            className="text-base md:text-lg font-black fill-current drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]"
-            style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))' }}
-          >
-            <textPath href="#wavyPath" startOffset="0%">
-              <tspan className="fill-yellow-400">Much Koins</tspan>
-              <tspan className="fill-pink-400"> Very Round</tspan>
-              <tspan className="fill-cyan-400"> Wow</tspan>
-            </textPath>
-          </text>
-        </svg>
+        <div className="relative w-[140px] h-[140px]">
+          {/* Pi symbol in center */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="font-black text-black text-6xl">π</span>
+          </div>
+          {/* Rotating text */}
+          <svg width="140" height="140" viewBox="0 0 140 140" className="absolute inset-0">
+            <defs>
+              <path
+                id="circlePath"
+                d="M 70 70 m -50, 0 a 50,50 0 1,1 100,0 a 50,50 0 1,1 -100,0"
+                fill="none"
+              />
+            </defs>
+            <g className="animate-spin" style={{ transformOrigin: '70px 70px', animationDuration: '10s' }}>
+              <text
+                className="font-black fill-black"
+                style={{ fontSize: '10.5px', letterSpacing: '0.5px' }}
+              >
+                <textPath href="#circlePath" startOffset="0%" textLength={Math.PI * 100} lengthAdjust="spacingAndGlyphs">
+                  very round wow • very round wow • very round wow •
+                </textPath>
+              </text>
+            </g>
+          </svg>
+        </div>
       </div>
 
       {/* Right side - Scroll up indicator */}
