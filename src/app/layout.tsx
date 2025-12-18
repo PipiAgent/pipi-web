@@ -3,11 +3,9 @@ import "@/styling/globals.css"
 import type { Metadata } from "next"
 import { DM_Sans } from "next/font/google"
 
-import Navbar from "@/components/app/navbar"
 import ScrollToTop from "@/components/app/scroll-to-top"
 import SetStylingPref from "@/components/app/set-styling-pref"
 import { ThemeProvider } from "@/components/app/theme-provider"
-import { SplashWrapper } from "@/components/pipi/splash-wrapper"
 import { Toaster } from "@/components/ui/sonner"
 
 const dmSans = DM_Sans({
@@ -68,13 +66,10 @@ export default function RootLayout({
           defaultTheme="light"
           disableTransitionOnChange
         >
-          <SplashWrapper>
-            <Navbar />
-            {children}
-            <SetStylingPref />
-            <ScrollToTop />
-            <Toaster />
-          </SplashWrapper>
+          {children}
+          <SetStylingPref />
+          <ScrollToTop />
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
