@@ -191,24 +191,56 @@ export default function Home() {
       </div>
 
       {/* PIPI character - fixed, standing on floor */}
-      <img
-        src="/pipi-2.png"
-        alt="PIPI Character"
-        className="fixed bottom-[11vh] left-1/2 -translate-x-1/2 w-[70vw] md:w-[40vw] max-w-[400px] h-auto z-50"
-      />
+      <div className="fixed bottom-[11vh] left-1/2 -translate-x-1/2 z-50">
+        {/* Soft golden glow */}
+        <div
+          className="absolute inset-0 rounded-full"
+          style={{
+            background: 'radial-gradient(circle, rgba(255, 200, 50, 0.6) 0%, rgba(255, 180, 80, 0.3) 40%, transparent 70%)',
+            filter: 'blur(25px)',
+            animation: 'glowPulse 3s ease-in-out infinite',
+          }}
+        />
+        <img
+          src="/pipi-2.png"
+          alt="PIPI Character"
+          className="relative w-[70vw] md:w-[40vw] max-w-[400px] h-auto"
+        />
+      </div>
 
-      {/* Left side - Rotating text around Pi symbol */}
+      {/* Left side - Rotating text around coin */}
       <div
-        className="fixed left-4 md:left-8 bottom-[18vh] z-[100] pointer-events-none select-none"
+        className="fixed left-2 md:left-8 bottom-[18vh] z-[100] pointer-events-none select-none scale-[0.6] md:scale-100 origin-bottom-left"
         style={{
           opacity: morphProgress > 0.5 ? 1 : morphProgress * 2,
           transition: "opacity 0.3s ease-out",
         }}
       >
         <div className="relative w-[140px] h-[140px]">
-          {/* Pi symbol in center */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="font-black text-black text-6xl">π</span>
+          {/* Flipping coin in center */}
+          <div className="absolute inset-0 flex items-center justify-center" style={{ perspective: '200px' }}>
+            <div
+              className="relative w-24 h-24"
+              style={{
+                transformStyle: 'preserve-3d',
+                animation: 'coinFlip 2s ease-in-out infinite',
+              }}
+            >
+              {/* Heads side */}
+              <img
+                src="/koin-heads.png"
+                alt="koin heads"
+                className="absolute inset-0 w-full h-full object-contain"
+                style={{ backfaceVisibility: 'hidden' }}
+              />
+              {/* Tails side */}
+              <img
+                src="/koin-tail.png"
+                alt="koin tails"
+                className="absolute inset-0 w-full h-full object-contain"
+                style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+              />
+            </div>
           </div>
           {/* Rotating text */}
           <svg width="140" height="140" viewBox="0 0 140 140" className="absolute inset-0">
@@ -235,7 +267,7 @@ export default function Home() {
 
       {/* Right side - Scroll up indicator */}
       <div
-        className="fixed right-4 md:right-8 bottom-[18vh] z-[100] pointer-events-none select-none"
+        className="fixed right-2 md:right-8 bottom-[18vh] z-[100] pointer-events-none select-none scale-[0.7] md:scale-100 origin-bottom-right"
         style={{
           opacity: morphProgress > 0.5 ? 1 : morphProgress * 2,
           transition: "opacity 0.3s ease-out",

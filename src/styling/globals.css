@@ -111,6 +111,30 @@
       transform: translateX(0%);
     }
   }
+
+  @keyframes glowPulse {
+    0%, 100% {
+      opacity: 0.7;
+      transform: scale(1.2);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.5);
+    }
+  }
+
+}
+
+@keyframes coinFlip {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
 }
 
 @layer base {

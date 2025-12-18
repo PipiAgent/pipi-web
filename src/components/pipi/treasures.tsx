@@ -11,7 +11,7 @@ interface Particle {
   size: number
   rotation: number
   rotationSpeed: number
-  type: 'diamond' | 'coin'
+  type: 'diamond' | 'coin-heads' | 'coin-tails'
 }
 
 interface TreasuresProps {
@@ -50,18 +50,27 @@ const Treasures: React.FC<TreasuresProps> = ({
     const baseSize = isMobile ? 30 : 40
     const sizeRange = isMobile ? 15 : 40
 
-    // Initialize particles - 80% diamonds, 20% coins
-    particlesRef.current = Array.from({ length: count }, (_, i) => ({
-      id: i,
-      x: Math.random() * width,
-      y: Math.random() * height * 0.3,
-      vx: (Math.random() - 0.5) * 0.5,
-      vy: Math.random() * 0.5,
-      size: baseSize + Math.random() * sizeRange,
-      rotation: Math.random() * 360,
-      rotationSpeed: (Math.random() - 0.5) * 2,
-      type: Math.random() > 0.2 ? 'diamond' : 'coin'
-    }))
+    // Initialize particles - 80% diamonds, 20% coins (split between heads and tails)
+    particlesRef.current = Array.from({ length: count }, (_, i) => {
+      const rand = Math.random()
+      let type: 'diamond' | 'coin-heads' | 'coin-tails'
+      if (rand > 0.2) {
+        type = 'diamond'
+      } else {
+        type = Math.random() > 0.5 ? 'coin-heads' : 'coin-tails'
+      }
+      return {
+        id: i,
+        x: Math.random() * width,
+        y: Math.random() * height * 0.3,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: Math.random() * 0.5,
+        size: baseSize + Math.random() * sizeRange,
+        rotation: Math.random() * 360,
+        rotationSpeed: (Math.random() - 0.5) * 2,
+        type
+      }
+    })
 
     const handleMouseMove = (e: MouseEvent) => {
       const rect = container.getBoundingClientRect()
@@ -225,12 +234,23 @@ const Treasures: React.FC<TreasuresProps> = ({
           style={{
             left: p.x,
             top: p.y,
+            width: p.size,
+            height: p.size,
             fontSize: p.size,
             transform: `translate(-50%, -50%) rotate(${p.rotation}deg)`,
             willChange: 'transform, left, top',
           }}
         >
-          {p.type === 'diamond' ? '💎' : '🪙'}
+          {p.type === 'diamond' ? (
+            '💎'
+          ) : (
+            <img
+              src={p.type === 'coin-heads' ? '/koin-heads.png' : '/koin-tail.png'}
+              alt="koin"
+              className="w-full h-full object-contain"
+              draggable={false}
+            />
+          )}
         </div>
       ))}
     </div>
