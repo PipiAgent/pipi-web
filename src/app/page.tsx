@@ -78,6 +78,12 @@ export default function Home() {
     ? 0
     : 1 - (morphProgress / 0.33)
 
+  // GridScan: scales up from start, fades out as floor turns to marble
+  // At progress=1 (bottom/mud): scale=1, opacity=1
+  // At progress=0 (top/marble): scale=2.5, opacity=0
+  const gridScale = 1 + (1 - morphProgress) * 1.5 // Scale from 1 to 2.5 throughout entire scroll
+  const gridOpacity = morphProgress > 0.33 ? 1 : morphProgress / 0.33
+
   // PiPi text: fade out and scale down as user scrolls UP (progress decreases from 1 to 0)
   // At progress=1 (bottom): fully visible, scale=1
   // At progress=0.5: starts fading and scaling
@@ -92,8 +98,15 @@ export default function Home() {
 
   return (
     <main className="relative w-full" style={{ height: "3141px" }}>
-      {/* GridScan background - fixed */}
-      <div className="fixed inset-0 z-0">
+      {/* GridScan background - fixed, scales up and fades as floor turns to marble */}
+      <div
+        className="fixed inset-0 z-0"
+        style={{
+          transform: `scale(${gridScale})`,
+          opacity: gridOpacity,
+          transition: "transform 0.15s ease-out, opacity 0.15s ease-out",
+        }}
+      >
         <GridScan
           sensitivity={0.55}
           lineThickness={1.5}
@@ -163,7 +176,7 @@ export default function Home() {
 
       {/* PIPI text - fixed, fades and scales on scroll */}
       <div
-        className="fixed inset-0 z-20 flex items-center justify-center pointer-events-none"
+        className="fixed inset-0 z-20 flex items-start justify-center pt-[15vh] pointer-events-none"
         style={{
           opacity: textOpacity,
           transform: `scale(${textScale})`,
