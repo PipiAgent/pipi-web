@@ -179,9 +179,9 @@ export default function Home() {
 
       {/* PIPI character - fixed, standing on floor */}
       <img
-        src="/pipi.png"
+        src="/pipi-2.png"
         alt="PIPI Character"
-        className="fixed bottom-[14vh] left-1/2 -translate-x-1/2 w-[70vw] md:w-[40vw] max-w-[400px] h-auto z-30"
+        className="fixed bottom-[11vh] left-1/2 -translate-x-1/2 w-[70vw] md:w-[40vw] max-w-[400px] h-auto z-50"
       />
 
       {/* Left side - Doge speak on curved path */}
@@ -225,7 +225,7 @@ export default function Home() {
           {/* Bouncing arrow */}
           <div className="animate-bounce">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="text-pink-500 drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]">
-              <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
 
