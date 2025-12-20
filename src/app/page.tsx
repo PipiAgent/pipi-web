@@ -1,10 +1,11 @@
 "use client"
 
 import "@/styling/pipi.css"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { GridScan } from "@/components/pipi/grid-scan"
 import Treasures from "@/components/pipi/treasures"
 import BubbleMenu from "@/components/pipi/BubbleMenu"
+import Loader from "@/components/pipi/loader"
 
 const menuItems = [
   {
@@ -45,9 +46,17 @@ const menuItems = [
 ];
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true)
   const [morphProgress, setMorphProgress] = useState(0)
 
+  const handleLoadComplete = useCallback(() => {
+    setIsLoading(false)
+  }, [])
+
   useEffect(() => {
+    // Don't set up scroll handling until loading is complete
+    if (isLoading) return
+
     const handleScroll = () => {
       const scrollTop = window.scrollY
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight
@@ -65,7 +74,7 @@ export default function Home() {
 
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  }, [isLoading])
 
   // Progress: 1 = bottom (mud), 0 = top (marble)
   // Bottom 67% of scroll = mud, top 33% transitions to marble
@@ -95,6 +104,11 @@ export default function Home() {
   const textScale = morphProgress > textFadeStart
     ? 1
     : 0.5 + (morphProgress / textFadeStart) * 0.5 // Scale from 0.5 to 1
+
+  // Show loader while loading
+  if (isLoading) {
+    return <Loader onLoadComplete={handleLoadComplete} />
+  }
 
   return (
     <main className="relative w-full" style={{ height: "3141px" }}>
@@ -253,11 +267,11 @@ export default function Home() {
             </defs>
             <g className="animate-spin" style={{ transformOrigin: '70px 70px', animationDuration: '10s' }}>
               <text
-                className="font-black fill-black"
+                className="font-black fill-black uppercase"
                 style={{ fontSize: '10.5px', letterSpacing: '0.5px' }}
               >
                 <textPath href="#circlePath" startOffset="0%" textLength={Math.PI * 100} lengthAdjust="spacingAndGlyphs">
-                  very round wow • very round wow • very round wow •
+                  much koink•very round wow•very round wow•
                 </textPath>
               </text>
             </g>
