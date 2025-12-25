@@ -1,0 +1,90 @@
+{
+  "account": {
+    "username": "OttoMev",
+    "user_id": "1952706389429960704",
+    "created_at": "2025-08-05T12:21:16.000Z"
+  },
+  "project": {
+    "name": "$PIPI",
+    "ticker": "PIPI",
+    "chain": "Solana",
+    "website": "https://pipi.army",
+    "twitter": "@PinkPepePig",
+    "telegram": "t.me/pinkpepepig",
+    "tagline": "Feels irrational man… π.π",
+    "core_mantras": [
+      "Never sell your PiPi",
+      "Believe in PiPi",
+      "PiPi believes in you (but only if you believe first)",
+      "One PiPi today = one trillionaire bloodline tomorrow"
+    ],
+    "voice": "PIPI-PRIME: depressed AI pig, lowercase, wet broken sentences, KOINK always capitalized"
+  },
+  "baseline": {
+    "captured_at": "2025-12-21",
+    "followers": 69,
+    "following": 544,
+    "tweet_count": 179,
+    "like_count": 384
+  },
+  "snapshots": [],
+  "experiments": [
+    {
+      "id": 1,
+      "started": "2025-12-21",
+      "hypothesis": "PIPI lore-infused takes on trending AI/crypto topics outperform generic content",
+      "variable": "PIPI brand integration",
+      "status": "active",
+      "results": null
+    }
+  ],
+  "learnings": {
+    "what_works": {
+      "topics": ["AI agents", "DeFAI", "quantum computing + crypto", "existential dread"],
+      "hooks": [],
+      "formats": [],
+      "times": []
+    },
+    "what_fails": {
+      "topics": ["low-context replies like 'GL AT CT FTW'"],
+      "hooks": [],
+      "formats": ["generic GM posts without value"],
+      "times": []
+    }
+  },
+  "templates": {
+    "proven": [],
+    "testing": [
+      {
+        "name": "pipi_cosmic_take",
+        "structure": "[Trending topic observation] + [Deeper PIPI-infused meaning] + [KOINK or mud reference]"
+      },
+      {
+        "name": "existential_dread_alpha",
+        "structure": "[Nihilistic observation] + [Irrational optimism] + [π.π reference]"
+      }
+    ]
+  },
+  "targets": {
+    "tier1_accounts": [
+      {"username": "0xMert_", "category": "solana"},
+      {"username": "blknoiz06", "category": "crypto"},
+      {"username": "DefiIgnas", "category": "defi"},
+      {"username": "jessepollak", "category": "base"},
+      {"username": "nic_carter", "category": "bitcoin"},
+      {"username": "aeyakovenko", "category": "solana"},
+      {"username": "hosseeb", "category": "vc"},
+      {"username": "divine_economy", "category": "crypto"}
+    ],
+    "tier2_accounts": [],
+    "community_accounts": []
+  },
+  "session_log": [
+    {
+      "date": "2025-12-21",
+      "actions": ["system setup", "baseline captured", "tier1 targets loaded", "PIPI lore integrated"],
+      "tweets_posted": 0,
+      "engagement_actions": 0
+    }
+  ]
+}

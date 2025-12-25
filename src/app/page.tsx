@@ -105,13 +105,23 @@ export default function Home() {
     ? 1
     : 0.5 + (morphProgress / textFadeStart) * 0.5 // Scale from 0.5 to 1
 
+  // Pink card: appears after marble phase (when morphProgress < 0.33)
+  // Slides up from bottom and stops below the nav bar
+  // Card starts appearing when morphProgress reaches 0.33 and is fully visible at 0
+  const cardTransitionPoint = 0.33
+  const cardProgress = morphProgress < cardTransitionPoint
+    ? 1 - (morphProgress / cardTransitionPoint) // 0 at 0.33, 1 at 0
+    : 0 // Hidden when in mud phase
+  // translateY: 100% (off-screen below) to 0 (fully visible)
+  const cardTranslateY = 100 - (cardProgress * 100)
+
   // Show loader while loading
   if (isLoading) {
     return <Loader onLoadComplete={handleLoadComplete} />
   }
 
   return (
-    <main className="relative w-full" style={{ height: "3141px" }}>
+    <main className="relative w-full" style={{ height: "4500px" }}>
       {/* GridScan background - fixed, scales up and fades as floor turns to marble */}
       <div
         className="fixed inset-0 z-0"
@@ -309,6 +319,30 @@ export default function Home() {
             >
               only up from the mud
             </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Pink Card - slides up after marble transition */}
+      <div
+        className="fixed inset-x-0 bottom-0 z-40 pointer-events-auto"
+        style={{
+          transform: `translateY(${cardTranslateY}%)`,
+          transition: "transform 0.1s ease-out",
+        }}
+      >
+        <div
+          className="w-full bg-pink-400 rounded-t-[2rem] md:rounded-t-[3rem]"
+          style={{
+            height: "calc(100vh - 80px)", // Full height minus top bar space
+            boxShadow: "0 -10px 40px rgba(236, 72, 153, 0.3)",
+          }}
+        >
+          {/* Card content goes here */}
+          <div className="flex items-center justify-center h-full">
+            <h2 className="text-4xl md:text-6xl font-black text-white drop-shadow-lg">
+              Welcome to PIPI
+            </h2>
           </div>
         </div>
       </div>
